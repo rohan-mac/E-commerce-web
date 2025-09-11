@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+     <style>
+        /* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Wrapper */
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+  color: #fff;
+  padding: 15px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Cart Button in Header */
+#Cart {
+  background: #fff;
+  color: #2e7d32;
+  border: 2px solid #2e7d32;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#Cart:hover {
+  background: #2e7d32;
+  color: #fff;
+}
+
+/* Product Container */
+.cantainer {
+  padding: 40px 0;
+  background: #f5f6f8;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+/* Product Card */
+.carts {
+  background: #fff;
+  border-radius: 16px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.carts:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Product Image */
+.carts img {
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.carts:hover img {
+  transform: scale(1.05);
+}
+
+/* Product Texts */
+.carts p {
+  font-size: 14px;
+  margin: 6px 0;
+  color: #333;
+}
+
+/* Price Style */
+.carts p:nth-of-type(2) {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+/* Rating */
+.carts p:nth-of-type(3) {
+  font-size: 13px;
+  color: #777;
+}
+
+/* Add to Cart Button */
+.add-to-cart {
+  background: linear-gradient(135deg, #ff9800, #e68900);
+  color: #fff;
+  border: none;
+  padding: 12px 15px;
+  margin-top: 15px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+.add-to-cart:hover {
+  background: linear-gradient(135deg, #e68900, #d17a00);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.add-to-cart:active {
+  transform: translateY(1px);
+}
+/* Category Selector */
+#categorySelector {
+  padding: 8px 14px;
+  border: 2px solid #2e7d32;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2e7d32;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+/* Hover & Focus */
+#categorySelector:hover,
+#categorySelector:focus {
+  background: #2e7d32;
+  color: #fff;
+}
+
+/* Make dropdown options neat */
+#categorySelector option {
+  font-size: 14px;
+  padding: 10px;
+}
+
+
+/* Logo */
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+/* Navigation */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ff9800;
+}
+
+/* Search Box */
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 25px;
+  padding: 4px 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  border-radius: 25px;
+  font-size: 14px;
+  flex: 1;
+}
+
+.search-box button {
+  background: #2e7d32;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.search-box button:hover {
+  background: #256928;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* Tablets (max-width: 992px) */
+@media (max-width: 992px) {
+  .wrapper {
+    max-width: 95%;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .header h2 {
+    font-size: 20px;
+  }
+
+  #categorySelector {
+    width: 200px;
+  }
+
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .header h2 {
+    font-size: 18px;
+  }
+
+  #categorySelector,
+  #Cart {
+    width: 100%;
+    text-align: center;
+  }
+
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+  }
+
+  .carts img {
+    height: 160px;
+  }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .header-inner {
+    align-items: stretch;
+  }
+
+  .header h2 {
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+  }
+
+  #categorySelector,
+  #Cart {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .products {
+    grid-template-columns: 1fr; /* single column */
+  }
+
+  .carts {
+    padding: 12px;
+  }
+
+  .carts img {
+    height: 140px;
+  }
+}
+
+     </style>
+</head>
+
+<body>
+    <section>
+<div class="header">
+  <div class="header-inner wrapper">
+    <!-- Logo -->
+    <h2 class="logo">MyStore</h2>
+
+    <!-- Navigation Links -->
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">Deals</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <!-- Search Bar -->
+    <div class="search-box">
+      <input type="text" placeholder="Search products..." id="searchInput">
+      <button id="searchBtn">🔍</button>
+    </div>
+
+    <!-- Cart Button -->
+    <button id="Cart">Cart</button>
+  </div>
+</div>
+
+    </section>
+    <div class="cantainer">
+        <div class="products wrapper">
+
+        </div>
+    </div>
+
+    <script src="script.js" type="module"></script>
+
+</body>
+
+</html>

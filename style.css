@@ -1,0 +1,273 @@
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: auto;
+    gap: 30px;
+}
+
+.wrapper {
+    max-width: 1440px;
+    margin: auto;
+}
+
+.carts .price {
+    padding: 12px 15px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffd700;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.carts .discount {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #f39c12;
+    text-align: center;
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.carts .btn-buy {
+    display: block;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #fff;
+    color: #ff416c;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    margin: 15px auto 10px auto;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.carts .btn-buy:hover {
+    background-color: #ff4b2b;
+    color: white;
+}
+
+.header-inner {
+    height: 42px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+/* General Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.products.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.add-to-cart {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32); /* green gradient */
+    color: #fff;
+    border: none;
+    padding: 12px 18px;
+    margin-top: 10px;
+    border-radius: 50px; /* pill-shaped */
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    width: 100%;  /* full-width inside product card */
+}
+
+.add-to-cart:hover {
+    background: linear-gradient(135deg, #43A047, #1B5E20);
+    transform: translateY(-2px);
+}
+
+.add-to-cart:active {
+    transform: translateY(1px);
+}
+
+
+/* General select styling */
+
+select#categorySelector {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    appearance: none;
+    /* Removes default dropdown arrow in most browsers */
+    -webkit-appearance: none;
+    /* For Safari */
+    -moz-appearance: none;
+    /* For Firefox */
+    width: 250px;
+    /* Width of the select box */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Hover and Focus Effects */
+
+select#categorySelector:hover,
+select#categorySelector:focus {
+    border-color: #007bff;
+    /* Highlight border color on hover/focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    /* Light blue shadow */
+}
+
+
+/* Custom arrow for select dropdown */
+
+select#categorySelector::after {
+    content: " ▼";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+
+/* Optional: Add padding to the right for the custom arrow */
+
+select#categorySelector {
+    padding-right: 30px;
+    /* Gives space for the custom dropdown arrow */
+}
+
+
+/* Style the options */
+
+select#categorySelector option {
+    padding: 10px;
+    font-size: 14px;
+}
+
+
+/* Styling for the selected option */
+
+select#categorySelector option:checked {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+/* Individual Product Card Styling */
+
+.carts {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 280px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px;
+}
+
+.carts:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Image Styling */
+
+.carts img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style for Cart button using ID */
+#Cart {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+#Cart:hover {
+    background-color: #0056b3;
+}
+/* Product Description */
+
+.carts p {
+    margin: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.carts p:first-child {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+}
+
+.carts p:last-child {
+    color: #888;
+    font-size: 12px;
+}
+
+.carts .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    margin-top: 10px;
+}
+
+
+/* Add price and category in a clearer way */
+
+.carts p:nth-child(3) {
+    font-weight: 600;
+    color: #999;
+    font-size: 14px;
+}
+
+
+/* Responsive Adjustments */
+
+@media (max-width: 768px) {
+    .products.wrapper {
+        justify-content: flex-start;
+    }
+    .carts {
+        width: 100%;
+        max-width: 320px;
+    }
+}

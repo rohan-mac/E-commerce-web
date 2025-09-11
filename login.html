@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            margin: 0;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        /* Login Form Styles */
+        
+        .loginform {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        /* Link Styles */
+        
+        a {
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 10px;
+            display: block;
+        }
+        
+        a:hover {
+            color: #0056b3;
+        }
+        /* Dashboard Styles */
+        
+        .deshboard {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="loginform">
+            <form id="logindata">
+                <h1>Login Page</h1>
+                <label>
+                    firstName
+                    <input type="text" name="Name" id="Name" placeholder="please Enter your Name">
+                </label>
+                <label>
+                    Email
+                    <input type="email" name="email" id="email" placeholder="Please Enter your Email">
+                </label>
+                <label>
+                    Password
+                    <input type="password" name="password" id="password" placeholder="Please Enter your Password">
+                </label>
+                <button>Login</button>
+                <a href="http://127.0.0.1:5500/singuppage.html?Name=&email=&password=">Sign up</a>
+
+            </form>
+            <div class="deshboard">
+                <h3 id="wel">Welcome</h3>
+                <p id="para"></p>
+                <button id="deletec">LogOut</button>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        let logindata = document.getElementById("logindata")
+        let deletec = document.getElementById("deletec")
+        let wel = document.getElementById("wel")
+        let para = document.getElementById("para")
+        let deshboard = document.getElementsByClassName("deshboard")[0]
+        let date = new Date;
+
+
+        logindata.addEventListener("submit", async(params) => {
+            params.preventDefault()
+            let username = document.getElementById("Name").value;
+            let useremail = document.getElementById("email").value;
+            let userpassword = document.getElementById("password").value;
+
+            try {
+                let dataToSend = {
+                    Name: username,
+                    Email: useremail,
+                    Password: userpassword,
+                };
+                const url = "https://ewltest.vercel.app/api/v1/Auth/Login";
+                let data = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(dataToSend),
+                });
+                let response = await data.json()
+                console.log(response);
+                // document.cookie = `"username=" + ${username}`
+                // document.cookie = `username ${username}; expires=Thu, ${date.getTime}`;
+
+                setCookie("username", username, 5)
+                checkCookies()
+
+            } catch (error) {
+                console.log(error);
+            }
+        })
+
+        function checkCookies() {
+            if (document.cookie) {
+                logindata.style.display = "none"
+                deshboard.style.display = "block"
+                para.innerText = document.cookie
+                return true;
+            } else {
+                console.log("No cookies are set.");
+                return false;
+            }
+        }
+        checkCookies();
+
+        deletec.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+            console.log("Cookie 'username' has been deleted.");
+            location.reload()
+        });
+
+        function setCookie(name, value, minutes) {
+            const d = new Date();
+            d.setTime(d.getTime() + minutes * 60 * 1000);
+
+            const expiresUTC = d.toUTCString();
+            document.cookie = `${name} = ${value};expires=${expiresUTC};path=/`;
+        }
+    </script>
+
+</body>
+
+</html>
