@@ -1,5 +1,5 @@
         // get all the importent elements
-        // let gg = document.getElementById("images")
+        let Cart = document.getElementById("Cart")
         let products = document.getElementsByClassName("products")[0]
         let headerInner = document.getElementsByClassName("header-inner")[0]
         let canegaries = []
@@ -22,7 +22,7 @@ async function getdata() {
             // Product card
             let div = document.createElement("div");
             div.setAttribute("class", "carts");
-            // div.innerHTML = `<img src="${product.images}" alt="product">`;
+            div.innerHTML = `<img src="${product.images[0]}" alt="product">`;
 
             // Description
             let discription = document.createElement("p");
@@ -113,7 +113,7 @@ function displayproducts(categorywiseproduct) {
         div.setAttribute("class", "carts");
 
         // Product image
-        // div.innerHTML = `<img src="${product.images}" alt="product">`;
+        div.innerHTML = `<img src="${product.images[0]}" alt="product">`;
 
         // Description
         let discription = document.createElement("p");
@@ -154,3 +154,10 @@ function displayproducts(categorywiseproduct) {
             console.log(cartObject);
             localStorage.setItem("cart", JSON.stringify(cartObject));
         }
+
+        // console.log(cartObject);
+     Cart.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+         window.location.href = "cart.html"
+     })   
